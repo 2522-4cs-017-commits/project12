@@ -16,13 +16,13 @@ const Hero = () => {
         >
           <div className="w-80 h-80 mx-auto relative">
             <Image
-              src="/profile.jpg" // Placeholder, replace with actual image
+              src="/portfoliopic.jpeg" // Your profile picture
               alt="Usman Ahmed"
               width={320}
               height={320}
-              className="w-full h-full object-cover rounded-full"
+              className="w-full h-full object-cover rounded-full border-4 border-slate-700"
             />
-            <div className="absolute -top-4 -right-4 bg-teal-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+            <div className="absolute bottom-0 right-0 bg-teal-400 text-black px-3 py-1 rounded-full text-sm font-semibold">
               E-Commerce Expert
             </div>
           </div>
@@ -55,10 +55,10 @@ const Hero = () => {
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-            <button className="bg-teal-500 text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-colors">
+            <button className="bg-teal-400 text-black font-bold px-6 py-3 rounded-lg hover:bg-teal-500 transition-colors">
               HIRE ME
             </button>
-            <button className="border border-teal-500 text-teal-400 px-6 py-3 rounded-lg hover:bg-teal-500 hover:text-white transition-colors">
+            <button className="border border-teal-400 text-teal-400 px-6 py-3 rounded-lg hover:bg-teal-400 hover:text-black transition-colors">
               VIEW PROJECTS
             </button>
           </div>
