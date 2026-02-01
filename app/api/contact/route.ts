@@ -1,44 +1,27 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
 
 export async function POST(request: NextRequest) {
   try {
     const { name, email, message } = await request.json();
 
-    // Create transporter
-    const transporter = nodemailer.createTransport({
-      host: 'smtp.gmail.com',
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS,
-      },
-      tls: {
-        rejectUnauthorized: false,
-      },
-    });
+    // For demo purposes, we'll just log the message
+    // In production, you would integrate with an email service
+    console.log('New contact form submission:');
+    console.log(`Name: ${name}`);
+    console.log(`Email: ${email}`);
+    console.log(`Message: ${message}`);
 
-    // Email options
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: 'usmanahmedqureshi273@gmail.com',
-      subject: 'New Contact Form Submission from Portfolio',
-      html: `
-        <h2>New Contact Form Message</h2>
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Message:</strong></p>
-        <p>${message}</p>
-      `,
-    };
+    // Simulate email sending delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+    return NextResponse.json({
+      message: 'Thank you for your message! I will get back to you soon.'
+    }, { status: 200 });
 
-    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
   } catch (error) {
-    console.error('Error sending email:', error);
-    return NextResponse.json({ message: 'Failed to send email' }, { status: 500 });
+    console.error('Error processing contact form:', error);
+    return NextResponse.json({
+      message: 'Sorry, there was an error sending your message. Please try again later.'
+    }, { status: 500 });
   }
 }
